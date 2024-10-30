@@ -11,7 +11,7 @@ Make sure the following libraries are installed:
 #### -> A dataset in .csv format (e.g., movies.csv), containing columns such as title, genres, keywords, tagline, cast, director, and popularity.
 
 ## Code Overview
-#### 1. Data Loading and Initial Setup:
+### 1. Data Loading and Initial Setup:
 #### Import required libraries.
 #### Define the working directory and load the movies.csv dataset.
     #### import os
@@ -19,29 +19,29 @@ Make sure the following libraries are installed:
          os.chdir("C:\\Users\\Ramakrishna Kadali\\Documents\\rudra\\")
          movies_data = pd.read_csv("movies.csv")
 
-#### 2. Data Preprocessing:
+### 2. Data Preprocessing:
 #### Define selected_features as the list of columns relevant to the movie's content.
 #### Check for missing values and replace them with empty strings.
      #### selected_features = ['genres', 'keywords', 'tagline', 'cast', 'director']
           for feature in selected_features:
               movies_data[feature] = movies_data[feature].fillna('')
 
-#### 3. Combining Features:
+### 3. Combining Features:
 #### Concatenate the selected_features columns into a single string per row to create a combined_features column, which will represent the textual content for each movie.
      #### combined_features = movies_data['genres'] + ' ' + movies_data['keywords'] + ' ' + movies_data['tagline'] + ' ' + movies_data['cast'] + ' ' + movies_data['director']
 
-#### 4. Feature Extraction Using TF-IDF:
+### 4. Feature Extraction Using TF-IDF:
 #### Use TfidfVectorizer to convert combined_features into a matrix of TF-IDF features.
      #### from sklearn.feature_extraction.text import TfidfVectorizer
           vectorizer = TfidfVectorizer()
           feature_vectors = vectorizer.fit_transform(combined_features)
 
-#### 5. Similarity Calculation:
+### 5. Similarity Calculation:
 #### Compute cosine similarity between the feature vectors of all movies.
      #### from sklearn.metrics.pairwise import cosine_similarity
           similarity = cosine_similarity(feature_vectors)
 
-#### 6. Popularity Plot:
+### 6. Popularity Plot:
 #### Define a function to plot the top 10 movies based on popularity using a horizontal bar chart.
      #### import matplotlib.pyplot as plt
           def plot():
@@ -54,7 +54,7 @@ Make sure the following libraries are installed:
               plt.show()
           plot()
 
-#### 7. Movie Recommendation:
+### 7. Movie Recommendation:
 #### Prompt the user for a movie name, find the closest match, and generate a list of recommended movies based on similarity scores.
 #### Display the top 30 most similar movies to the user.
      #### import difflib
